@@ -1,0 +1,15 @@
+.section {
+  background-color: var(--color-white);
+  padding: var(--spacing-lg);
+}
+
+.section-alt {
+  background-color: var(--color-light);
+  padding: var(--spacing-lg);
+}
+
+.footer {
+  background-color: var(--color-light);
+  color: var(--color-text);
+  padding: var(--spacing-md);
+}

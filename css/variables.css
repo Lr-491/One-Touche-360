@@ -1,0 +1,26 @@
+:root {
+  /* Couleurs principales */
+  --color-primary: #2563EB;   /* Bleu principal (CTA) */
+  --color-primary-dark: #1E3A8A; /* Bleu foncé (hover) */
+  --color-light: #E0F2FE;     /* Bleu clair (sections, footer) */
+  --color-text: #0F172A;      /* Noir soft */
+  --color-white: #FFFFFF;     /* Blanc */
+
+  /* Typographie */
+  --font-base: 'Inter', sans-serif;
+  --font-heading: 'Poppins', sans-serif;
+
+  /* Espacements */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Radius et ombres */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.15);
+}
