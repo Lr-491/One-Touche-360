@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — One Touch 360°</title>
+  <link rel="icon" type="image/png" href="../images/logoWhite.png">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/blog.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo__div">
+      <img src="../images/logoWhite.png" alt="logo du site">
+    </div>
+    <nav class="nav">
+      <ul class="lists_items">
+        <li class="item"><a href="../index.html">Accueil</a></li>
+        <li class="item"><a href="../index.html#aboutUs">À propos</a></li>
+        <li class="item"><a href="../index.html#services">Services</a></li>
+        <li class="item"><a href="blog.html" class="active">Blog</a></li>
+      </ul>
+    </nav>
+    <div class="burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="blog__hero">
+      <span class="blog__hero-badge">Blog & Actualités</span>
+      <h1 class="blog__hero-title">
+        Nos <span>Projets</span> & Conseils Digitaux
+      </h1>
+      <p class="blog__hero-text">
+        Études de cas clients, tutoriels pratiques et actus tech
+        pour booster votre présence digitale.
+      </p>
+      <!-- Stats rapides -->
+      <div class="blog__hero-stats">
+        <div class="blog__hero-stat">
+          <span id="stat__total">0</span>
+          <small>Articles</small>
+        </div>
+        <div class="blog__hero-stat">
+          <span>4</span>
+          <small>Catégories</small>
+        </div>
+        <div class="blog__hero-stat">
+          <span>2026</span>
+          <small>Depuis</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTRES -->
+    <div class="blog__filters" id="blogFilters">
+      <button class="blog__filter active" data-filter="all">
+        Tous les articles
+        <span class="blog__filter-count" id="count__all"></span>
+      </button>
+      <button class="blog__filter" data-filter="cas">
+        Études de cas
+        <span class="blog__filter-count" id="count__cas"></span>
+      </button>
+      <button class="blog__filter" data-filter="conseil">
+        Conseils & Tutos
+        <span class="blog__filter-count" id="count__conseil"></span>
+      </button>
+      <button class="blog__filter" data-filter="actu">
+        Actu Tech
+        <span class="blog__filter-count" id="count__actu"></span>
+      </button>
+      <button class="blog__filter" data-filter="agence">
+        Vie de l'agence
+        <span class="blog__filter-count" id="count__agence"></span>
+      </button>
+    </div>
+
+    <!-- ARTICLES -->
+    <section class="blog__main">
+      <div class="blog__inner">
+
+        <!-- À LA UNE — généré par JS -->
+        <h2 class="blog__section-title">À la une</h2>
+        <div class="blog__featured" id="blogFeatured"></div>
+
+        <!-- DERNIERS ARTICLES — généré par JS -->
+        <h2 class="blog__section-title" id="blog__grid-title">Derniers articles</h2>
+        <div class="blog__grid" id="blogGrid"></div>
+
+        <!-- Message si aucun résultat -->
+        <div class="blog__empty" id="blog__empty" style="display:none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <p>Aucun article dans cette catégorie pour l'instant.</p>
+          <button class="blog__filter-reset" onclick="resetFilter()">Voir tous les articles</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NEWSLETTER MINI -->
+    <section class="blog__newsletter">
+      <div class="blog__newsletter-inner">
+        <div class="blog__newsletter-text">
+          <h3>Ne ratez aucun article</h3>
+          <p>Recevez nos nouvelles publications directement par email.</p>
+        </div>
+        <form class="blog__newsletter-form" id="blogNewsletterForm">
+          <input type="email" placeholder="Votre adresse email" id="blogEmail" required>
+          <button type="submit">S'abonner →</button>
+        </form>
+        <p class="blog__newsletter-success" id="blogNLSuccess" style="display:none;">
+          ✓ Vous êtes inscrit(e) !
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <!-- colle ton footer ici -->
+  </footer>
+
+  <script src="../js/articles.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/blog.js"></script>
+</body>
+</html>
