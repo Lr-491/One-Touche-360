@@ -1,12 +1,99 @@
-// Gestion du menu burger
-const burger = document.getElementById('burger');
-const nav = document.querySelector('.nav');
+/* ============================================
+   NAVBAR — Scroll + Burger + Lien actif
+   ============================================ */
 
+const header  = document.querySelector('.header');
+const burger  = document.getElementById('burger');
+const nav     = document.querySelector('.nav');
+const navLinks = document.querySelectorAll('.nav .lists_items a');
+
+// ── 1. Ajout du bouton CTA dans la nav ──────
+const ctaLink = document.createElement('a');
+ctaLink.href      = '#contact';
+ctaLink.className = 'nav__cta';
+ctaLink.textContent = 'Contact';
+document.querySelector('.nav .lists_items').appendChild(
+  Object.assign(document.createElement('li'), {
+    className: 'item',
+    innerHTML: '<a href="#contact" class="nav__cta">Contact</a>'
+  })
+);
+
+// ── 2. Scroll — transparent → scrolled ──────
+function handleScroll() {
+  if (window.scrollY > 60) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+}
+
+window.addEventListener('scroll', handleScroll, { passive: true });
+handleScroll(); // applique l'état au chargement
+
+// ── 3. Burger menu ───────────────────────────
 burger.addEventListener('click', () => {
-  nav.classList.toggle('active');
   burger.classList.toggle('open');
+  nav.classList.toggle('open');
+
+  // Bloque le scroll du body quand le menu est ouvert
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
 });
 
+// ── 4. Ferme le menu au clic sur un lien ────
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    burger.classList.remove('open');
+    nav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── 5. Lien actif selon la section visible ──
+const sections = document.querySelectorAll('section[id]');
+
+function setActiveLink() {
+  const scrollY = window.scrollY + 120;
+
+  sections.forEach(section => {
+    const top    = section.offsetTop;
+    const height = section.offsetHeight;
+    const id     = section.getAttribute('id');
+
+    if (scrollY >= top && scrollY < top + height) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + id ||
+            link.getAttribute('href') === './' + id + '.html') {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}
+
+window.addEventListener('scroll', setActiveLink, { passive: true });
+setActiveLink();
+
+// ── 6. Ferme le menu si on clique en dehors ─
+document.addEventListener('click', (e) => {
+  if (nav.classList.contains('open') &&
+      !nav.contains(e.target) &&
+      !burger.contains(e.target)) {
+    burger.classList.remove('open');
+    nav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// ── 7. Ferme le menu si resize → desktop ────
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) {
+    burger.classList.remove('open');
+    nav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
 // Gestion du lien actif
 const links = document.querySelectorAll('.nav .lists_items a');
 

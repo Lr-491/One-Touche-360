@@ -1,100 +1,205 @@
 
 /* Import de tous les styles pour les utilisées */
-@import url('variables.css');
+/* @import url('variables.css');
 @import url('reset.css');
 @import url('Components/button.css');
 @import url('Components/liens.css');
 @import url('Components/footer.css');
+@import url('laout/layout.css'); */
 
-
+/* ===== NAVBAR  : Transparente → Navy + bordure dégradé + CTA ===== */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--color-white); /* noir soft */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: 1rem var(--spacing-md);
   z-index: 1000;
-  box-shadow: var(--shadow-md); 
+  transition: background-color 0.35s ease,
+              box-shadow 0.35s ease,
+              padding 0.35s ease;
+
+  /* Transparente par défaut */
+  background-color: transparent;
 }
 
+/* ── État scrollé ── */
+.header.scrolled {
+  background-color: #1a1a2e;
+  padding: 0.65rem var(--spacing-md);
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+
+  /* Bordure dégradé violet → bleu en bas */
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, #7c3aed, #2563eb) 1;
+}
+
+/* ── Logo ── */
 .logo__div img {
-  width: 100px;  
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  transition: width 0.35s ease, height 0.35s ease, filter 0.35s ease;
+
+  /* Logo noir visible sur fond transparent (hero sombre) */
+  filter: brightness(0) invert(1);
 }
 
-/* Navbar centrée sur desktop */
+.header.scrolled .logo__div img {
+  width: 60px;
+  height: 60px;
+}
+
+/* ── Nav centré ── */
 .nav {
-  flex: 1; /* je recupere l’espace disponible après le logo*/
+  flex: 1;
   display: flex;
-  justify-content: center; /* cje le entre horizontalement */
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .nav .lists_items {
   display: flex;
-  gap: var(--spacing-md);
+  align-items: center;
+  gap: 0.25rem;
   list-style: none;
+  padding: 20px;
+  margin: 0;
 }
 
+/* ── Liens ── */
 .nav .lists_items a {
-  color: var(--color-primary-dark);
-  font-size: 1.3rem;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
-  transition: color 0.3s ease;
-  margin: 100px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease,
+              color 0.2s ease;
 }
 
+/* Fond au hover */
 .nav .lists_items a:hover {
-  color: var(--color-primary-dark); /* bleu foncé */
+  background-color: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
 }
 
+/* Lien actif */
 .nav .lists_items a.active {
-  color: var(--color-primary); /* bleu principal */
-  font-weight: bold;
-  position: relative;
+  background-color: rgba(99, 102, 241, 0.25);
+  color: #a5b4fc;
+  font-weight: 700;
 }
 
-.nav .lists_items a.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-primary);
+/* ── Bouton CTA dans la navbar ── */
+.nav__cta {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
 }
 
+.nav__cta:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
 
-/* Burger menu */
+/* ── Burger ── */
 .burger {
   display: none;
   flex-direction: column;
-  cursor: pointer;
   gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1001;
 }
 
 .burger span {
-  width: 25px;
-  height: 3px;
-  background: var(--color-primary-dark);
-  transition: 0.3s;
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.3s ease,
+              opacity 0.3s ease;
 }
 
-/* Section bannière */
+/* Animation burger → croix */
+.burger.open span:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* ===== HERO SECTION  : Violet & Navy ===== */
 .banier {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: var(--spacing-xl);
   padding: calc(var(--spacing-xl) + 100px) var(--spacing-xl) var(--spacing-xl);
-  background-color: var(--color-white);
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 60%, #1a0a2e 100%);
 }
 
-.first_section, section {
+/* ── Cercle déco violet (haut droite) ── */
+.banier::before {
+  content: '';
+  position: absolute;
+  top: -140px;
+  right: -80px;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,58,237,0.28) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Cercle déco bleu (bas gauche) ── */
+.banier::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -60px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.22) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── z-index sur les colonnes ── */
+.banier .first_section,
+.banier .right__div {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Colonne gauche ── */
+.first_section {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -102,68 +207,120 @@
 }
 
 .left__div__text {
-  max-width: 780px;
+  max-width: 560px;
   width: 100%;
 }
-.left__div__text span{
-    font-size: 90px;
-}
- .color {
-    color: var(--color-primary);
-    font-size: 4rem;
-}
 
+/* ── Titre ── */
 .title {
   font-family: var(--font-heading);
-  font-size: 90px;
-  font-weight: bold;
-  color: var(--color-text);
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
   margin-bottom: var(--spacing-md);
-  line-height: 1.2;
+  letter-spacing: -0.5px;
 }
 
+/* Le mot coloré "solution" — dégradé violet → bleu */
+.title .color {
+  background: linear-gradient(90deg, #a78bfa, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Paragraphe ── */
 .first_para {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--color-text);
+  color: #a89ec4;
   margin-bottom: var(--spacing-lg);
-  margin-top: 30px;
+  max-width: 480px;
 }
 
-/* Partie droite */
-.right__div {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.right__div img {
-  max-width: 100%;
-  width: 800px;
-  height: 100%;
-  /* border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md); */
-}
-
-/* Bouton CTA — fix du z-index */
+/* ── Bouton CTA — remplissage violet → bleu ── */
 .ctaBtn {
-  width: 300px;
-  height: 80px;
   position: relative;
   display: inline-block;
-  padding: var(--spacing-sm) var(--spacing-md);
-  margin-top: 50px;
+  padding: 0.85rem 2rem;@media (max-width: 768px) {
+
+  .header {
+    padding: 0.85rem var(--spacing-md);
+    z-index: 1000;
+  }
+
+  /* Nav mobile */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #1a1a2e;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Caché par défaut */
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease,
+                visibility 0.4s ease;
+
+    z-index: 998; /* sous le burger mais au-dessus du contenu */
+  }
+
+  /* Ouverte */
+  .nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav .lists_items {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav .lists_items a {
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+    border-radius: 10px;
+    width: 220px;
+    text-align: center;
+  }
+
+  .nav__cta {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    width: 220px;
+    text-align: center;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+  }
+
+  /* Burger toujours visible au-dessus de la nav ouverte */
+  .burger {
+    display: flex;
+    position: relative;
+    z-index: 1001;
+  }
+}
   font-size: 1rem;
-  font-weight: bold;
-  color: var(--color-primary);
-  background-color: var(--color-white);
-  border: 2px solid var(--color-primary);
-  border-radius: var(--radius-md);
+  font-weight: 700;
+  color: #ffffff;
+  background: transparent;
+  border: 2px solid rgba(167, 139, 250, 0.5);
+  border-radius: var(--radius-md, 10px);
   cursor: pointer;
   overflow: hidden;
-  transition: color 0.3s ease;
-  z-index: 0; /* ← important : crée un stacking context */
+  transition: color 0.3s ease, border-color 0.3s ease;
+  z-index: 0;
 }
 
 .ctaBtn::before {
@@ -173,89 +330,168 @@
   left: 0;
   width: 0;
   height: 100%;
-  background-color: var(--color-primary);
-  z-index: -1; /* reste derrière le texte, mais dans le bouton */
+  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  z-index: -1;
   transition: width 0.4s ease;
 }
 
 .ctaBtn:hover {
-  color: var(--color-white);
+  color: #ffffff;
+  border-color: transparent;
 }
 
 .ctaBtn:hover::before {
   width: 100%;
 }
 
-/* ===== SERVICES SECTION ===== */
-.services_section {
-  padding: var(--spacing-xl) var(--spacing-xl);
-  background-color: #f8f9fa;
+/* ── Colonne droite (image) ── */
+.right__div {
+  flex: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
-/* En-tête centré */
+.right__div img {
+  max-width: 100%;
+  height: auto;
+  /* Lueur violette sous l'image — parfait avec le fond removebg */
+  filter: drop-shadow(0 20px 60px rgba(124, 58, 237, 0.35));
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ── Animation flottante ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-14px); }
+}
+
+/* ── RESPONSIVE ──
+@media (max-width: 1024px) {
+  .title { font-size: 2.4rem; }
+}
+
+@media (max-width: 768px) {
+  .banier {
+    flex-direction: column;
+    text-align: center;
+    padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
+    gap: var(--spacing-lg);
+  }
+
+  .first_section {
+    width: 100%;
+  }
+
+  .left__div__text {
+    max-width: 100%;
+  }
+
+  .first_para {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .right__div {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .ctaBtn {
+    width: 100%;
+  }
+} */
+ .color {
+    color: var(--color-primary);
+    font-size: 4rem;
+}
+
+/* ===== SERVICES SECTION : Blanc & Lueur violette ===== */
+.services_section {
+  padding: var(--spacing-xl) var(--spacing-xl);
+  background-color: #fafafa;
+  text-align: center;
+}
+
+/* ── Titre ── */
 .services__title {
   font-family: var(--font-heading);
   font-size: 2rem;
-  font-weight: bold;
-  color: var(--color-text);
+  font-weight: 800;
+  color: #1a1a2e;
   margin-bottom: var(--spacing-sm);
 }
 
-.services__title span {
-  color: var(--color-primary);
+.services__title .color {
+  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+/* ── Sous-titre ── */
 .services__subtitle {
   font-size: 1rem;
   color: #6b7280;
   margin-bottom: var(--spacing-xl);
-  max-width: 500px;
+  max-width: 480px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Wrapper intérieur (optionnel, garde juste la grille) */
+/* ── Wrapper ── */
 .services {
   max-width: 1300px;
   margin: 0 auto;
 }
 
-.service__card {
-    width: 250px;
-    height: 250px;
-}
-
-/* Grille : 5 colonnes desktop */
+/* ── Grille flex ── */
 .grid__services {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
 }
 
-/* Carte */
+/* ── Carte ── */
 .service__card {
-  background-color: var(--color-white);
-  border-radius: var(--radius-md, 10px);
+  background-color: #ffffff;
+  border-radius: 14px;
   border: 1px solid #e5e7eb;
-  border-top: 3px solid transparent;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 1.25rem;
   text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-top-color 0.25s ease;
+  cursor: pointer;
+
+  /* Taille fixe — 5 par ligne sur desktop */
+  flex: 0 0 calc(20% - 1rem);
+
+  /* Transition douce */
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
 }
 
+/* ── Effet lueur violette au hover ── */
 .service__card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.10);
-  border-top-color: var(--color-primary);
+  border-color: #a78bfa;
+  box-shadow:
+    0 0 0 1px #a78bfa,
+    0 0 20px rgba(124, 58, 237, 0.18),
+    0 0 40px rgba(124, 58, 237, 0.08),
+    0 8px 24px rgba(124, 58, 237, 0.12);
 }
 
-/* Icône */
+/* ── Icône ── */
 .service__icon {
   width: 54px;
   height: 54px;
@@ -264,16 +500,28 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
+  transition: transform 0.25s ease;
 }
 
+.service__card:hover .service__icon {
+  transform: scale(1.1);
+}
+
+/* ── Titre carte ── */
 .service__card h3 {
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #1a1a2e;
   margin-bottom: 0.5rem;
   line-height: 1.3;
+  transition: color 0.25s ease;
 }
 
+.service__card:hover h3 {
+  color: #7c3aed;
+}
+
+/* ── Texte carte ── */
 .service__card p {
   font-size: 0.78rem;
   color: #6b7280;
@@ -281,18 +529,19 @@
   margin: 0;
 }
 
-/* Couleurs des icônes */
+/* ── Couleurs icônes ── */
 .icon--blue   { background-color: #dbeafe; }
 .icon--purple { background-color: #ede9fe; }
 .icon--pink   { background-color: #fce7f3; }
 .icon--amber  { background-color: #fef3c7; }
 .icon--green  { background-color: #dcfce7; }
 .icon--teal   { background-color: #ccfbf1; }
-.icon--sky    { background-color: #e0f2fe; }
 .icon--indigo { background-color: #e0e7ff; }
 .icon--coral  { background-color: #ffe4e6; }
-.icon--lime   { background-color: #ecfccb; }
 
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
 
 /* ===== ABOUT SECTION ===== */
 .about_section {
@@ -599,24 +848,7 @@
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .newsletter_section {
-    padding: var(--spacing-xl) var(--spacing-md);
-  }
 
-  .newsletter__title {
-    font-size: 1.5rem;
-  }
-
-  .newsletter__fields {
-    flex-direction: column;
-  }
-
-  .newsletter__btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
 
 /* Bouton CTA */
 .about__cta {
@@ -798,153 +1030,4 @@
 
 .footer__legal-links a:hover {
   color: #ffffff;
-}
-
-/* ===== RESPONSIVE FOOTER ===== */
-@media (max-width: 1024px) {
-  .footer__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .footer__brand {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer {
-    padding: var(--spacing-xl) var(--spacing-md) 0;
-  }
-
-  .footer__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer__brand {
-    grid-column: auto;
-  }
-
-  .footer__bottom {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 0.75rem;
-  }
-
-  .footer__legal-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-}
-
-/* ===== RESPONSIVE ===== */
-
-/* Tablette */
-@media (max-width: 1024px) {
-  
-    /* ABOUTES */
-  .about__container {
-    gap: var(--spacing-lg);
-  }
-  /* SERVICES */
-  .grid__services {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-
- /* Aboutes */
-   .about_section {
-    padding: var(--spacing-xl) var(--spacing-md);
-  }
-
-  .about__container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about__image {
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-  }
-
-  .about__image::before {
-    display: none; /* on retire le cadre déco sur mobile */
-  }
-
-  .about__title {
-    font-size: 1.5rem;
-  }
-
-  .about__stats {
-    justify-content: center;
-    gap: 1.5rem;
-  }
-
-  .about__badge {
-    margin: 0 auto;
-  }
-
-  .about__cta {
-    margin: 0 auto;
-  }
-
-  /* Services */
-  .services_section {
-    padding: var(--spacing-xl) var(--spacing-md);
-  }
-
-  .services__title {
-    font-size: 1.5rem;
-  }
-
-  .grid__services {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.875rem;
-  }
-
-  /* Bannière */
-  .banier {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding: calc(var(--spacing-xl) + 80px) var(--spacing-md) var(--spacing-xl);
-    gap: var(--spacing-lg);
-  }
-
-  .first_section,
-  .left__div__text,
-  .right__div {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  /* Navigation */
-  .nav {
-    position: absolute;
-    top: 60px;
-    left: -100%;
-    width: 100%;
-    background-color: var(--color-white);
-    transition: left 0.3s ease;
-    justify-content: center;
-  }
-
-  .nav.active {
-    left: 0;
-  }
-
-  .nav .lists_items {
-    flex-direction: column;
-    align-items: center;
-    padding: var(--spacing-md);
-  }
-
-  .burger {
-    display: flex;
-  }
 }

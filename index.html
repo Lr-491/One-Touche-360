@@ -7,7 +7,12 @@
     <!-- Favicon — logo sur l'onglet -->
     <link rel="icon" type="image/png" href="./images/logoWhite.png">
     <!-- Lien vers le CSS -->
+     <link rel="stylesheet" href="./css/reset.css">
+     <link rel="stylesheet" href="./css/components/button.css">
+     <link rel="stylesheet" href="./css/components/lient.css">
+     <link rel="stylesheet" href="./css/components/footer.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/laout/layout.css">
 </head>
 <body>
     <!-- HEADER -->
@@ -59,8 +64,55 @@
                 <img src="./images/5-removebg-preview.png" alt="">
              </div>
         </section>
+        
+         <!-- ABOUT SECTION -->
+        <section class="about_section" id="aboutUs">
+            <div class="about__container">
 
-        <!-- SERVICES SECTION -->
+                <!-- Colonne gauche : image -->
+                <div class="about__image">
+                    <img src="./images/4.jpeg" alt="À propos de One Touch 360">
+                </div>
+
+                <!-- Colonne droite : texte -->
+                <div class="about__content">
+
+                    <span class="about__badge">À propos de nous</span>
+
+                    <h2 class="about__title">
+                        Agence de <span class="color">Marketing Digital</span><br> & Solutions IT
+                    </h2>
+
+                    <p class="about__text">
+                        On est une agence de marketing digital et solutions IT qui accompagne 
+                        entreprises et particuliers dans leur transformation numérique. On crée 
+                        des solutions modernes, simples et efficaces pour booster ta visibilité 
+                        et tes performances.
+                    </p>
+
+                    <!-- Stats rapides -->
+                    <div class="about__stats">
+                        <div class="about__stat">
+                        <span class="stat__number">50+</span>
+                        <span class="stat__label">Clients satisfaits</span>
+                        </div>
+                        <div class="about__stat">
+                        <span class="stat__number">3+</span>
+                        <span class="stat__label">Ans d'expérience</span>
+                        </div>
+                        <div class="about__stat">
+                        <span class="stat__number">100+</span>
+                        <span class="stat__label">Projets réalisés</span>
+                        </div>
+                    </div>
+
+                    <a href="#services" class="ctaBtn about__cta">Voir nos services</a>
+
+                </div>
+            </div>
+        </section>
+
+                <!-- SERVICES SECTION -->
          <section class="services_section" id="services">
             <h2 class="services__title">Nous fournissons les meilleurs <span class="color">Services</span></h2>
             <p class="services__subtitle">Des solutions digitales & IT complètes pour votre entreprise</p>
@@ -143,53 +195,6 @@
         
         </section>
         
-         <!-- ABOUT SECTION -->
-        <section class="about_section" id="aboutUs">
-            <div class="about__container">
-
-                <!-- Colonne gauche : image -->
-                <div class="about__image">
-                    <img src="./images/4.jpeg" alt="À propos de One Touch 360">
-                </div>
-
-                <!-- Colonne droite : texte -->
-                <div class="about__content">
-
-                    <span class="about__badge">À propos de nous</span>
-
-                    <h2 class="about__title">
-                        Agence de <span class="color">Marketing Digital</span><br> & Solutions IT
-                    </h2>
-
-                    <p class="about__text">
-                        On est une agence de marketing digital et solutions IT qui accompagne 
-                        entreprises et particuliers dans leur transformation numérique. On crée 
-                        des solutions modernes, simples et efficaces pour booster ta visibilité 
-                        et tes performances.
-                    </p>
-
-                    <!-- Stats rapides -->
-                    <div class="about__stats">
-                        <div class="about__stat">
-                        <span class="stat__number">50+</span>
-                        <span class="stat__label">Clients satisfaits</span>
-                        </div>
-                        <div class="about__stat">
-                        <span class="stat__number">3+</span>
-                        <span class="stat__label">Ans d'expérience</span>
-                        </div>
-                        <div class="about__stat">
-                        <span class="stat__number">100+</span>
-                        <span class="stat__label">Projets réalisés</span>
-                        </div>
-                    </div>
-
-                    <a href="#services" class="ctaBtn about__cta">Voir nos services</a>
-
-                </div>
-            </div>
-        </section>
-
         <!-- NEWSLETTER SECTION -->
         <section class="newsletter_section" id="newsletter">
         <div class="newsletter__container">
